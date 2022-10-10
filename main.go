@@ -1,9 +1,16 @@
 package main
 
 import (
-	"fmt"
+	"github.com/gin-gonic/gin"
+	"github.com/nlndrpraja/blog-API/controller/blog"
 )
 
 func main() {
-	fmt.Println("Initialize project at: 11/10/2022" )
+	r := gin.Default()
+	r.GET("/blog", blog.FindAllBlogsHandler)
+	r.GET("/blog/:id", blog.FindBlogByIdHandler)
+	r.POST("/blog", blog.CreateBlogHandler)
+	r.PUT("/blog/like/:id", blog.AddLikeHandler)
+	r.DELETE("/blog/:id", blog.DeleteBlogByIdHandler)
+	r.Run() 
 }
