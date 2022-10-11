@@ -10,7 +10,7 @@ func main() {
 	r.GET("/blog", blog.FindAllBlogsHandler)
 	r.GET("/blog/:id", blog.FindBlogByIdHandler)
 	r.POST("/blog", blog.CreateBlogHandler)
-	r.PUT("/blog/like/:id", blog.AddLikeHandler)
+	r.PUT("/blog/like", blog.AddLikeHandler)
 	r.DELETE("/blog/:id", blog.DeleteBlogByIdHandler)
 	r.Run() 
 }

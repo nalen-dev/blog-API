@@ -9,8 +9,15 @@ import (
 )
 
 func AddLikeHandler(c *gin.Context){
-	id,_ := strconv.Atoi(c.Param("id"))
-	index,blog, err := findBlogById(id)
+	id,ok := c.GetQuery("id")
+	id_int,_ := strconv.Atoi(id)
+
+	if !ok{
+		c.IndentedJSON(http.StatusBadRequest, gin.H{"message" : "missing id query parameter."})	
+		return
+	}
+
+	index,blog, err := findBlogById(id_int)
 	if(err != nil){
 		c.IndentedJSON(http.StatusNotFound, gin.H{"message" : "blog not found"})		
 		return
